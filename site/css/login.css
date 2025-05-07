@@ -10,17 +10,18 @@
 }
 
 body {
-  background-image: url(../imagens/cadastro.png);
+  background-image: url(../imagens/login.png);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
 }
 
 .center {
+  height: 85vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   margin-block: 1.5rem;
   gap: 2rem;
   padding: 50px;
@@ -29,8 +30,6 @@ body {
 /* Estilização do container principal */
 .container {
   border-radius: 20px;
-  border: 3px solid #ffffffd1;
-  background: rgba(227, 227, 227, 0.400);
   width: 500px;
   height: 70%;
   display: flex;
@@ -44,7 +43,7 @@ body {
   font-weight: 600;
   font-style: italic;
   color: white;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 10px 10px 10px rgb(106 120 254);
 }
 
 /* Ajuste de espaçamento do ícone dentro do título */
@@ -53,13 +52,6 @@ body {
 }
 
 
-h3 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-  color: white;
-  font-size: 20px;
-}
 
 
 /* Estilização do campo de entrada de dados */
@@ -69,22 +61,25 @@ select {
   height: 45px;
   width: 95%;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: 60px;
+  border: solid 2px rgb(106 120 254);
   font-size: 14px;
   letter-spacing: 0.5px;
   outline: none;
-  color: #000000;
-  background-color: #ffffffda;
-  border: none;
+  color: #ffffff;
+  background-color: #000000c4;
   font-family: "Poppins", sans-serif;
-  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, .2);
+  box-shadow: 0 4px 8px 0 rgba(106 120 254);
   transition: 0.3s ease-in-out;
+}
 
+input::placeholder {
+  color: white;
 }
 
 /* Efeito ao focar no campo de entrada */
 input:focus {
-  border: 2px solid #000000;
+  border: 2px solid rgb(255, 255, 255);
   box-shadow: none;
   outline: none;
   transition: border 0.2s ease-in-out;
@@ -94,9 +89,9 @@ input:focus {
 
 /* Efeito ao passar o mouse sobre o botão */
 .button:hover {
-  background: #ffffff;
+
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.2);
+
 }
 
 /* Efeito ao clicar no botão */
@@ -110,13 +105,14 @@ input:focus {
   height: 45px;
   width: 30%;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: 60px;
   font-size: 14px;
   letter-spacing: 0.5px;
-  color: #000000;
-  background: linear-gradient(90deg, #ffffffd2 0%, #e3e3e3 100%);
+  color: #ffffff;
+  background-color: #000000c4;
   font-family: "Poppins", sans-serif;
-  border: none;
+  border: solid 2px #6977fe;
+  box-shadow: 0 4px 8px 0 rgba(106 120 254);
 
 }
 
@@ -134,7 +130,7 @@ input:focus {
 /* Navbar */
 
 header {
-  background: linear-gradient(to right, #161616, #6772d5);
+ 
   width: 100%;
   height: 80px;
   display: flex;

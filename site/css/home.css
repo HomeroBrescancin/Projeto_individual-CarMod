@@ -8,6 +8,12 @@
   list-style: none;
   box-sizing: border-box;
 }
+body {
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 
 
 
