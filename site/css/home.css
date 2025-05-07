@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'poppins', sans-serif;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+
+
+/* Navbar */
+
+header {
+    background: linear-gradient(to right, #161616, #6772d5);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+  }
+  
+  .logo {
+    width: 26%;
+  }
+  
+  header nav ul {
+    display: flex;
+  }
+  
+  header nav ul li a {
+    display: inline-block;
+    color: #ffffff;
+    padding: 5px 0;
+    margin: 0 10px;
+    border: 3px solid transparent;
+    text-transform: uppercase;
+  
+  }
+  
+  header nav ul li a:hover,
+  header nav ul li a.active {
+    border-bottom-color: rgb(255, 255, 255);
+  }
+
+  /* Pagina 2 */
+
+  .sec_1 {
+
+    height: 90vh;
+    background-image:  url(../imagens/plano_fund.png);
+    background-size: cover;
+    background-position: center;
+    
+
+  }
+
+
+  /* Section 1 */
+  .fundo-compartilhado {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../imagens/turbo.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 0;
+  }
+  
+  /* Remover o fundo individual das seções */
+  .parte_2,
+  .parte_2b {
+    background: none;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.container_1,
+.container_2 {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1000px;
+}
+
+.texto,
+.texto_2 {
+  max-width: 500px;
+}
+
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  color: white;
+  font-size: 20px;
+  text-align: justify;
+  margin: 10px 0;
+}
+
+.img_1,
+.img_2 {
+  width: 450px;
+}
+
+
+
+
+  /* .sec_2 {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 80px 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #0f111f;
+  }
+  
+  .text1,
+  .text2 {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+  }
+  
+  .text2 {
+    flex-direction: row-reverse;
+  }
+  
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   
+  }
+  
+
+  .img_1,
+  .img_2 {
+    width: 450px;
+
+  } */
