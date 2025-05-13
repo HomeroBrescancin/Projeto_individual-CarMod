@@ -57,7 +57,7 @@ header {
   .sec_1 {
 
     height: 100vh;
-    background-image:  url(../imagens/plano_fund.png);
+    background-image:  url(../assets/plano_fund.png);
     background-size: cover;
     background-position: center;
     
@@ -67,7 +67,7 @@ header {
 
   /* Section 1 */
   .fundo-compartilhado {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../imagens/turbo.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/turbo.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

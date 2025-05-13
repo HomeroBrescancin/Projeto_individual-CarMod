@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="imagens/icon.png">
+</head>
+<body>
+
+
+
+    <header>
+        <a href="index.html"><img class="logo" src="assets/logo.png" alt=""></a>
+
+
+       
+
+        <nav>
+            <ul class="menu">
+                <li>
+                    <a href="index.html" >Home</a>
+                </li>
+                <br><br>
+                <li>
+                    <a href="#">Carros</a>
+                </li>
+                <br><br>
+                <li>
+                    <a href="#"> Informações </a>
+                </li>
+                <br><br>
+                <li>
+                    <a href="cadastro.html" >Cadastrar</a>
+                </li><br><br>
+
+                <li>
+                    <a  class="active" href="#"> Entrar </a>
+                </li><br><br>
+
+               
+            </ul>
+        </nav>
+
+    </header>
+    
+
+
+    <div class="center">
+
+        <div class="container">
+
+            <h1 class="title"> Login   </h1> <br>
+
+            <!-- <h3>Email</h3>  -->
+            <input type="email" id="email_input" placeholder="Seu email"> <br>
+            
+              <!-- <h3>Senha:</h3>  -->
+            <input type="password" id="senha_input" placeholder="Digite sua senha"> <br>
+            
+            <a class="login" href="cadastro.html">Não tenho uma conta </a>
+
+
+            <div id="mensagem_erro">
+
+            </div>
+            <button class="button" onclick="entrar()">Entrar</button>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>
+
+
+<script>
+
+
+    function entrar() {
+      
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+           
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+           
+        }
+       
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/home.html";
+                       
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                  
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
