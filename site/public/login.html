@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="icon" href="imagens/icon.png">
 </head>
+
 <body>
 
 
@@ -15,12 +17,12 @@
         <a href="index.html"><img class="logo" src="assets/logo.png" alt=""></a>
 
 
-       
+
 
         <nav>
             <ul class="menu">
                 <li>
-                    <a href="index.html" >Home</a>
+                    <a href="index.html">Home</a>
                 </li>
                 <br><br>
                 <li>
@@ -32,68 +34,79 @@
                 </li>
                 <br><br>
                 <li>
-                    <a href="cadastro.html" >Cadastrar</a>
+                    <a href="cadastro.html">Cadastrar</a>
                 </li><br><br>
 
                 <li>
-                    <a  class="active" href="#"> Entrar </a>
+                    <a class="active" href="#"> Entrar </a>
                 </li><br><br>
 
-               
+
             </ul>
         </nav>
 
     </header>
-    
+
 
 
     <div class="center">
 
         <div class="container">
 
-            <h1 class="title"> Login   </h1> <br>
+            <h1 class="title"> Login </h1> <br>
 
             <!-- <h3>Email</h3>  -->
             <input type="email" id="email_input" placeholder="Seu email"> <br>
-            
-              <!-- <h3>Senha:</h3>  -->
+
+            <!-- <h3>Senha:</h3>  -->
             <input type="password" id="senha_input" placeholder="Digite sua senha"> <br>
-            
+
             <a class="login" href="cadastro.html">Não tenho uma conta </a>
 
 
-            <div id="mensagem_erro">
 
-            </div>
             <button class="button" onclick="entrar()">Entrar</button>
+            <br>
+            <div id="mensagem_erro"></div>
+
+
 
         </div>
 
     </div>
-    
+
 </body>
+
 </html>
 
 
 <script>
-
-
     function entrar() {
-      
+        // Pegando os valores dos inputs
+        var emailVar = email_input.value.trim();
+        var senhaVar = senha_input.value.trim();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-
-        if (emailVar == "" || senhaVar == "") {
-           
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-           
+        // Verificações básicas
+        if (emailVar === "" || senhaVar === "") {
+            mensagem_erro.innerHTML = "<span style='color: red;'>Preencha todos os campos.</span>";
+            return;
         }
-       
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+        if (!emailVar.includes("@") || !emailVar.includes(".")) {
+            mensagem_erro.innerHTML = "<span style='color: red;'>Digite um email válido.</span>";
+            return;
+        }
 
+        if (senhaVar.length < 6) {
+            mensagem_erro.innerHTML = "<span style='color: red;'>A senha deve ter pelo menos 6 caracteres.</span>";
+            return;
+        }
+
+        // Exibindo no console
+        console.log("Email: ", emailVar);
+        console.log("Senha: ", senhaVar);
+
+        // Enviando os dados para o servidor
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -104,44 +117,26 @@
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
             if (resposta.ok) {
-                console.log(resposta);
+    resposta.json().then(json => {
+        sessionStorage.EMAIL_USUARIO = json.email;
+        sessionStorage.NOME_USUARIO = json.nome;
+        sessionStorage.ID_USUARIO = json.id;
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+mensagem_erro.innerHTML = "<span style='color: white; font-size: 16px; text-align: center; display: block;'>Login realizado com sucesso! Redirecionando...</span>";
 
-                    setTimeout(function () {
-                        window.location = "./dashboard/home.html";
-                       
-                    }, 1000); // apenas para exibir o loading
+        setTimeout(function () {
+            window.location = "./dashboard/home.html";
+        }, 1000);
+    });
+}
 
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                  
-                });
+            else {
+                mensagem_erro.innerHTML = "<span style='color: red;'>Email ou senha incorretos.</span>";
             }
-
         }).catch(function (erro) {
             console.log(erro);
-        })
-
-        return false;
+            mensagem_erro.innerHTML = "<span style='color: red;'>Erro ao conectar com o servidor.</span>";
+        });
     }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
 </script>

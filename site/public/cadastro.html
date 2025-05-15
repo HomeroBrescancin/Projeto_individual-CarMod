@@ -102,8 +102,9 @@
             <a class="login" href="login.html"> Já tenho uma conta</a>
 
             <button class="button" onclick="cadastrar()">Cadastrar</button>
+            <br>
 
-                        <div style="color: white;" id="mensagem_erro"></div>
+                        <div  id="mensagem_erro"></div>
             
 
 
@@ -118,89 +119,63 @@
 </body>
 </html>
 
+
 <script>
+  async function cadastrar() {
+   
+    div_msgemail.innerHTML = '';
+    mensagem_erro.innerHTML = '';
 
-
-  function cadastrar() {
-    // aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
+    var nomeVar = nome_input.value.trim();
+    var emailVar = email_input.value.trim();
     var senhaVar = senha_input.value;
     var estadoVar = select_estado.value;
- 
 
-    if(emailVar.indexOf("@") == -1 && emailVar.indexOf(".") == -1|| emailVar == ''){
-      div_msgemail.innerHTML =`<span style="color: red;">Insira um email válido!</span>`;
-    } else if(senhaVar.length < 6){
-      mensagem_erro.innerHTML = `<span style="color: red;">Senha deve ser maior que 6 caracteres</span>`;
-    } 
-
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      estadoVar == "#" 
-    ) {
-    
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+    // Validação de campos vazios
+    if (!nomeVar || !emailVar || !senhaVar || estadoVar === "#") {
+      mensagem_erro.innerHTML = `<span style="color: red;">Preencha todos os campos.</span>`;
+      return;
     }
 
-   
+    // Validação de email
+    if (!emailVar.includes("@") || !emailVar.includes(".")) {
+      div_msgemail.innerHTML = `<span style="color: red;">Insira um email válido!</span>`;
+      return;
+    }
 
-    // Enviando o valor da nova input
+    // Validação de senha
+    if (senhaVar.length < 6) {
+      mensagem_erro.innerHTML = `<span style="color: red;">A senha deve ter mais de 6 caracteres.</span>`;
+      return;
+    }
+
+    // Se todas as validações passaram, fazer o cadastro
     fetch("/usuarios/cadastrar", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        estadoServer: estadoVar,
+        estadoServer: estadoVar
       }),
     })
       .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
         if (resposta.ok) {
-    
-
           mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
+            `<span style='color: white; font-size: 16px; text-align: center; display: block;'>Cadastro realizado com sucesso! Redirecionando para tela de Login...</span>`;
           setTimeout(() => {
             window.location = "./login.html";
-          }, "2000");
-
-          limparFormulario();
-          
+          }, 2000);
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          mensagem_erro.innerHTML =
+            `<span style="color: red;">Erro ao cadastrar. Tente novamente.</span>`;
         }
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        
+      .catch(function (erro) {
+        console.error("Erro no fetch:", erro);
+        mensagem_erro.innerHTML =
+          `<span style="color: red;">Erro ao tentar cadastrar.</span>`;
       });
-
-    return false;
   }
-
-  function sumirMensagem() {
-    
-  }
-
 </script>
