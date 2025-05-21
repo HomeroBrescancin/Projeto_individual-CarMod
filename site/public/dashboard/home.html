@@ -1,19 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../js/sessao.js"></script>
+    <script src="../js/sessao.js"></script>
+    <link rel="stylesheet" href="../css/dash.css">
 
     <title>Document</title>
 </head>
+
 <body onload="validarSessao()">
 
-    <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-    <h3>Olá, <span id="teste">usuário</span>!</h3>
- <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
+
+
+
+    <header>
+        <a href="index.html"><img class="logo" src="assets/logo.png" alt=""></a>
+
+        <nav>
+            <ul class="menu">
+                <li>
+                    <a class="active" href="#">Dashboard</a>
+                </li>
+                <br><br>
+                <li>
+                    <a href="#">Cadastro</a>
+                </li>
+
+
+                <br><br>
+                <li>
+                    <a href="#">Quiz</a>
+                </li>
+                <br><br>
+                <li>
+                    <a href="#">Perfil</a>
+                </li>
+
+                <!-- <li>
+                    <a><span id="b_usuario">usuário</span></a>
+                </li><br><br> -->
+
+                <!-- <li>
+                    <div onclick="limparSessao()">
+                        <a href="#">Sair</a>
+                    </div>
+                </li><br><br> -->
+
+            </ul>
+        </nav>
+
+    </header>
+
+    <br><br> <br><br>
+
+    <div class="sec_1">
+
+        <div class="dashs">
+
+            <div class="dash_n" >
+
+                dash_1
+
             </div>
-    
+            <div class="dash_n">
+
+                dash_2
+
+            </div>
+            <div class="dash_n">
+
+                dash_3
+
+            </div>
+            <div class="dash_n">
+
+                dash_4
+
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>

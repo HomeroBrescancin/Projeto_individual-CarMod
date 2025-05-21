@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'poppins', sans-serif;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+body {
+  background-image:  url(../assets/fundo_dash.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+
+
+/* Navbar */
+  header {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      position: fixed;
+   
+    }
+    .logo {
+      max-width: 160px;
+    }
+
+    nav {
+      position: relative;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+      
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      border-bottom-color: #ffffff;
+    }
+
+      .sec_1 {
+
+    height: 100vh;
+    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    
+  }
+
+  .info
+  {
+    width: 25%;
+    border-right: 2px solid white;
+    height: 100vh;
+    background-color: #000000d4;
+  }
+
+.dashs {
+  background-color: rgba(255, 255, 255, 0.74);
+  width: 60%;
+  height: 90%;
+  display: grid;
+grid-template-columns: 50% 50%; /* Duas colunas que ocupam metade da largura cada */
+grid-template-rows: 50% 50%;    /* Duas linhas que ocupam metade da altura cada */
+gap: 5px;
+  padding: 20px; 
+  box-sizing: border-box;
+}
+  .dash_n {
+  background-color: #4b4b4b9a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 8px;
+}

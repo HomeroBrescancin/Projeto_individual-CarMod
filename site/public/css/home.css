@@ -18,39 +18,43 @@ body {
 
 
 /* Navbar */
+  header {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+      position: fixed;
+   
+    }
+    .logo {
+      max-width: 160px;
+    }
 
-header {
+    nav {
+      position: relative;
+    }
 
-    width: 100%;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px;
-  }
-  
-  .logo {
-    width: 26%;
-  }
-  
-  header nav ul {
-    display: flex;
-  }
-  
-  header nav ul li a {
-    display: inline-block;
-    color: #ffffff;
-    padding: 5px 0;
-    margin: 0 10px;
-    border: 3px solid transparent;
-    text-transform: uppercase;
-  
-  }
-  
-  header nav ul li a:hover,
-  header nav ul li a.active {
-    border-bottom-color: rgb(255, 255, 255);
-  }
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+      
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      border-bottom-color: #ffffff;
+    }
+
 
   /* Pagina 2 */
 
@@ -112,42 +116,32 @@ h3 {
   width: 450px;
 }
 
+footer {
+      background-color: #0d0d0d;
+      color: #fdfdfd;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .logof {
+      display: block;
+      margin: 0 auto 1rem auto;
+      max-width: 180px; 
+    }
+    .contact {
+      display: flex;
+      justify-content: center;
+      gap: 2rem; 
+      flex-wrap: wrap; 
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .contact a {
+      color: #fdfdfd;
+      text-decoration: none;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
 
 
-
-  /* .sec_2 {
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-    padding: 80px 100px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #0f111f;
-  }
-  
-  .text1,
-  .text2 {
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-  }
-  
-  .text2 {
-    flex-direction: row-reverse;
-  }
-  
-  .text-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-   
-  }
-  
-
-  .img_1,
-  .img_2 {
-    width: 450px;
-
-  } */
