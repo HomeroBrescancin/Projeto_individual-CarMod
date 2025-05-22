@@ -9,64 +9,105 @@
 </head>
 
 
+
+
+
 <body onload="onloadEsconder()">
-    <div id="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
-        </div>
+    <header>
+        <a href="index.html"><img class="logo" src="../assets/logo.png" alt=""></a>
 
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+        <nav>
+            <ul class="menu">
+                <li>
+                    <a href="home.html">Dashboard</a>
+                </li>
+                <br><br>
+                <li>
+                    <a href="#">Cadastro</a>
+                </li>
 
-            <div id="infoQuestao" class="padding-8">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                    questões.</span>
-            </div>
 
-            <div id="perguntaDaQuestaoAtual" class="padding-8">
-                <span id="spanQuestaoExibida" class="text-bold"></span>
-            </div>
+                <br><br>
+                <li>
+                    <a class="active" href="#">Quiz</a>
+                </li>
+                <br><br>
+                <li>
+                    <a href="#">Perfil</a>
+                </li>
 
-            <div id="infoAlternativas" class="padding-8">
-                <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
+             
 
-            <div id="opcoes" class="flex-colunar padding-8">
-                <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                </span>
-                <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                </span>
-                <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                </span>
-            </div>
+            </ul>
+        </nav>
 
-            <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+    </header>
+
+
+
+    <div class="center" id="pontuacaoEJogo">
+
+        <button class="iniciar" id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+        <div class="centerjogo">
+
+            <div id="pontuacao" class="pontuacao">
+                <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                    <span class="Text">Quantidade de acertos: <span id="spanCertas"></span></span> <br>
+                    <span class="Text">Quantidade de erros: <span id="spanErradas"></span></span>
+                </div>
+                <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                    <span id="pontuacaoFinal" class="Text">Pontuação Final:
+                        <span id="spanPontuacaoFinal"></span>
+                    </span>
+                    <span id="msgFinal" class="Text"></span>
+                </div>
             </div>
 
+            <div id="jogo" class="jogo">
+
+                <div id="infoQuestao" class="padding-8">
+                    <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                        questões.</span>
+                </div>
+
+                <div id="perguntaDaQuestaoAtual" class="padding-8">
+                    <span id="spanQuestaoExibida" class="text-bold"></span>
+                </div>
+
+                <div id="infoAlternativas" class="padding-8">
+                    <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                </div>
+
+                <div id="opcoes" class="flex-colunar padding-8">
+                    <span>
+                        <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                        <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                    </span> <br>
+                    <span>
+                        <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                        <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                    </span> <br>
+                    <span>
+                        <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                        <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                    </span> <br>
+                    <span>
+                        <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                        <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                    </span> <br>
+                </div>
+
+                <div id="botoes" class="flex-colunar padding-8">
+                    <button class="opcao" onclick="submeter()" id="btnSubmeter">Enviar resposta</button>
+                    <button class="opcao" onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                    <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                    <button class="opcao" onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                </div>
+
+
+            </div>
         </div>
     </div>
 </body>
@@ -75,79 +116,79 @@
 <script>
     const listaDeQuestoes = [
 
-{
-    pergunta: "O que é um 'turbo' em carros modificados?",
-    alternativaA: "Sistema que aumenta a entrada de ar no motor",
-    alternativaB: "Controle eletrônico de freios",
-    alternativaC: "Peça que reduz o consumo de combustível",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaA"
-  },
-  {
-    pergunta: "Qual componente é mais comum modificar para melhorar o desempenho do motor?",
-    alternativaA: "Para-brisa",
-    alternativaB: "Lataria",
-    alternativaC: "Escapamento",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaC"
-  },
-  {
-    pergunta: "O que significa 'downforce'?",
-    alternativaA: "Aumento da velocidade final",
-    alternativaB: "Força para manter o carro no chão",
-    alternativaC: "Redução do atrito",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaB"
-  },
-  {
-    pergunta: "Para que serve um body kit?",
-    alternativaA: "Aumentar a capacidade de combustível",
-    alternativaB: "Melhorar a aerodinâmica e o visual",
-    alternativaC: "Proteger o motor da água",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaB"
-  },
-  {
-    pergunta: "O que é 'nitro' em corridas?",
-    alternativaA: "Sistema de som esportivo",
-    alternativaB: "Freio auxiliar para curvas",
-    alternativaC: "Gás que aumenta a potência por tempo limitado",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaC"
-  },
-  {
-    pergunta: "Qual carro tem motor RB26DETT?",
-    alternativaA: "RX-7",
-    alternativaB: "Skyline GT-R",
-    alternativaC: "Supra",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaB"
-  },
-  {
-    pergunta: "O que é 'drift'?",
-    alternativaA: "Sistema de freios",
-    alternativaB: "Derrapagem controlada",
-    alternativaC: "Tipo de motor turbo",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaB"
-  },
-  {
-    pergunta: "Carro do Brian O’Conner no primeiro filme?",
-    alternativaA: "Mustang azul",
-    alternativaB: "Supra laranja",
-    alternativaC: "Charger preto",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaB"
-  },
-  {
-    pergunta: "O que significa HP?",
-    alternativaA: "Hidratação do pistão",
-    alternativaB: "Cavalos de potência",
-    alternativaC: "Potência de freio",
-    alternativaD: "Nenhuma das alternativas",
-    alternativaCorreta: "alternativaB"
-  }
-];
+        {
+            pergunta: "O que é um 'turbo' em carros modificados?",
+            alternativaA: "Sistema que aumenta a entrada de ar no motor",
+            alternativaB: "Controle eletrônico de freios",
+            alternativaC: "Peça que reduz o consumo de combustível",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaA"
+        },
+        {
+            pergunta: "Qual componente é mais comum modificar para melhorar o desempenho do motor?",
+            alternativaA: "Para-brisa",
+            alternativaB: "Lataria",
+            alternativaC: "Escapamento",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "O que significa 'downforce'?",
+            alternativaA: "Aumento da velocidade final",
+            alternativaB: "Força para manter o carro no chão",
+            alternativaC: "Redução do atrito",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Para que serve um body kit?",
+            alternativaA: "Aumentar a capacidade de combustível",
+            alternativaB: "Melhorar a aerodinâmica e o visual",
+            alternativaC: "Proteger o motor da água",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "O que é 'nitro' em corridas?",
+            alternativaA: "Sistema de som esportivo",
+            alternativaB: "Freio auxiliar para curvas",
+            alternativaC: "Gás que aumenta a potência por tempo limitado",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaC"
+        },
+        {
+            pergunta: "Qual carro tem motor RB26DETT?",
+            alternativaA: "RX-7",
+            alternativaB: "Skyline GT-R",
+            alternativaC: "Supra",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "O que é 'drift'?",
+            alternativaA: "Sistema de freios",
+            alternativaB: "Derrapagem controlada",
+            alternativaC: "Tipo de motor turbo",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Carro do Brian O’Conner no primeiro filme?",
+            alternativaA: "Mustang azul",
+            alternativaB: "Supra laranja",
+            alternativaC: "Charger preto",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "O que significa HP?",
+            alternativaA: "Hidratação do pistão",
+            alternativaB: "Cavalos de potência",
+            alternativaC: "Potência de freio",
+            alternativaD: "Nenhuma das alternativas",
+            alternativaCorreta: "alternativaB"
+        }
+    ];
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
@@ -315,14 +356,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
