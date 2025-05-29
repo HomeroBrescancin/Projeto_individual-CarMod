@@ -9,7 +9,22 @@ CREATE TABLE usuario (
     Estado VARCHAR(45)
 );
 
-select * from usuario;
+
+
+CREATE TABLE cadastroCarro (
+    idCarro INT PRIMARY KEY AUTO_INCREMENT,
+    fkusuario INT,
+    Marca VARCHAR(45),
+    Modelo VARCHAR(45),
+    dtFabri YEAR,
+    tipoCombustivel VARCHAR(45),
+    FOREIGN KEY (fkusuario) REFERENCES usuario(id)
+);
+
+
+
+select * from cadastroCarro;
+
 
 
 

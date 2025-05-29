@@ -103,10 +103,10 @@ body {
 
 h3 {
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
+  font-weight: lighter ;
   font-style: italic;
   color: white;
-  font-size: 20px;
+  font-size: 17.5px;
   text-align: justify;
   margin: 10px 0;
 }

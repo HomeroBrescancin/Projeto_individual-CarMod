@@ -1,0 +1,138 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../css/cadastro_carro.css" />
+    <link rel="icon" href="imagens/icon.png" />
+</head>
+<body>
+    <header>
+        <a href="index.html"><img class="logo" src="../assets/logo.png" alt="Logo" /></a>
+        <nav>
+            <ul class="menu">
+                <li><a href="home.html">Dashboard</a></li><br /><br />
+                <li><a class="active" href="#">Cadastro</a></li><br /><br />
+                <li><a href="quiz.html">Quiz</a></li><br /><br />
+                <li><a href="#">Perfil</a></li>
+                <li>
+                    <div onclick="limparSessao()">
+                        <a href="#">Sair</a>
+                    </div>
+                </li><br /><br />
+            </ul>
+        </nav>
+    </header>
+
+    <div class="center">
+        <div class="container">
+            <h1 class="title">Cadastre seu carro</h1> <br />
+
+            <select id="marca_select">
+                <option value="#">Marca...</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Ford">Ford</option>
+                <option value="Honda">Honda</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Peugeot">Peugeot</option>
+                <option value="Renault">Renault</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Volkswagen">Volkswagen</option>
+            </select><br />
+
+            <input type="text" id="modelo_input" placeholder="Modelo do carro" /><br />
+
+            <!-- Mudança aqui: input do tipo number para aceitar apenas o ano -->
+            <input type="number" id="data_fab_input" placeholder="Ano de fabricação" min="1901" max="2155" /><br />
+
+            <select id="combustivel_select">
+                <option value="#">Combustível...</option>
+                <option value="Gasolina">Gasolina</option>
+                <option value="Álcool">Álcool</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Flex">Flex</option>
+                <option value="GNV">GNV</option>
+                <option value="Elétrico">Elétrico</option>
+            </select><br />
+
+            <a class="login" href="login.html">Já tenho uma conta</a>
+
+            <button class="button" onclick="cadastrarCarro()">Cadastrar</button>
+            <div id="mensagem_erro"></div>
+        </div>
+    </div>
+
+  <script>
+    function cadastrarCarro() {
+        var fkusuario = sessionStorage.ID_USUARIO;
+
+        var marca = document.getElementById("marca_select").value;
+        var modelo = document.getElementById("modelo_input").value.trim();
+        var dtFabri = document.getElementById("data_fab_input").value.trim();
+        var tipoCombustivel = document.getElementById("combustivel_select").value;
+
+        var divMensagem = document.getElementById("mensagem_erro");
+
+        if (
+            fkusuario == null ||
+            marca === "#" ||
+            modelo === "" ||
+            dtFabri === "" ||
+            tipoCombustivel === "#"
+        ) {
+            divMensagem.innerHTML =
+                "<span style='color:red'>Preencha todos os campos corretamente e faça login.</span>";
+            return;
+        }
+
+        if (!/^\d{4}$/.test(dtFabri) || dtFabri < 1901 || dtFabri > 2155) {
+            divMensagem.innerHTML =
+                "<span style='color:red'>Ano inválido. Digite um ano entre 1901 e 2155.</span>";
+            return;
+        }
+
+        fetch("/carros/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkusuario: fkusuario,
+                marca: marca,
+                modelo: modelo,
+                dtFabri: dtFabri,
+                tipoCombustivel: tipoCombustivel,
+            }),
+        })
+            .then((res) => {
+                if (res.ok) {
+                    divMensagem.innerHTML =
+                        "<span style='color:green'>Carro cadastrado com sucesso! Redirecionando...</span>";
+
+                    document.getElementById("marca_select").value = "#";
+                    document.getElementById("modelo_input").value = "";
+                    document.getElementById("data_fab_input").value = "";
+                    document.getElementById("combustivel_select").value = "#";
+
+                    setTimeout(() => {
+                        window.location.href = "home.html";
+                    }, 2000);
+                } else {
+                    divMensagem.innerHTML =
+                        "<span style='color:red'>Erro ao cadastrar carro. Tente novamente.</span>";
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                divMensagem.innerHTML =
+                    "<span style='color:red'>Erro na conexão com o servidor.</span>";
+            });
+    }
+</script>
+
+</body>
+</html>

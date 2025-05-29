@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'poppins', sans-serif;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(../assets/carro_cad.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 1.5rem;
+  gap: 2rem;
+  padding: 50px;
+}
+
+/* Estilização do container principal */
+.container {
+    justify-content: center;
+  background-color: rgba(0, 0, 0, 0.473);
+  border-radius: 20px;
+  width: 500px;
+  height: 450px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  color: white;
+  text-shadow: 10px 10px 10px rgb(106 120 254);
+}
+
+/* Ajuste de espaçamento do ícone dentro do título */
+.title i {
+  margin-right: 10px;
+}
+
+
+
+
+/* Estilização do campo de entrada de dados */
+input,
+select {
+  padding-left: 10px;
+  height: 45px;
+  width: 95%;
+  font-weight: 500;
+  border-radius: 60px;
+  border: solid 2px rgb(106 120 254);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  outline: none;
+  color: #ffffff;
+  background-color: #000000c4;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(106 120 254);
+  transition: 0.3s ease-in-out;
+}
+
+input::placeholder {
+  color: white;
+}
+
+/* Efeito ao focar no campo de entrada */
+input:focus {
+  border: 2px solid rgb(255, 255, 255);
+  box-shadow: none;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+
+
+/* Efeito ao passar o mouse sobre o botão */
+.button:hover {
+
+  transform: scale(1.05);
+
+}
+
+/* Efeito ao clicar no botão */
+.button:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-in-out;
+}
+
+/* Estilização do botão */
+.button {
+  height: 45px;
+  width: 30%;
+  font-weight: 500;
+  border-radius: 60px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background-color: #000000c4;
+  font-family: "Poppins", sans-serif;
+  border: solid 2px #6977fe;
+  box-shadow: 0 4px 8px 0 rgba(106 120 254);
+
+}
+
+.login {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  margin-block-end: 10px;
+  color: #ffffff;
+}
+
+.login:hover {
+  border-bottom: 2px solid black;
+}
+
+/* Navbar */
+
+header {
+
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.logo {
+  width: 26%;
+}
+
+header nav ul {
+  display: flex;
+}
+
+header nav ul li a {
+  display: inline-block;
+  color: #ffffff;
+  padding: 5px 0;
+  margin: 0 10px;
+  border: 3px solid transparent;
+  text-transform: uppercase;
+
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+  border-bottom-color: rgb(255, 255, 255);
+}
