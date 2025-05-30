@@ -28,7 +28,7 @@ body {
 /* Estilização do container principal */
 .container {
     justify-content: center;
-  background-color: rgba(0, 0, 0, 0.473);
+   backdrop-filter:blur(35px);
   border-radius: 20px;
   width: 500px;
   height: 450px;
@@ -68,9 +68,9 @@ select {
   letter-spacing: 0.5px;
   outline: none;
   color: #ffffff;
-  background-color: #000000c4;
+  background-color: #0000007e;
   font-family: "Poppins", sans-serif;
-  box-shadow: 0 4px 8px 0 rgba(106 120 254);
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
   transition: 0.3s ease-in-out;
 }
 
@@ -110,10 +110,10 @@ input:focus {
   font-size: 14px;
   letter-spacing: 0.5px;
   color: #ffffff;
-  background-color: #000000c4;
+  background-color: #00000000;
   font-family: "Poppins", sans-serif;
   border: solid 2px #6977fe;
-  box-shadow: 0 4px 8px 0 rgba(106 120 254);
+  box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
 
 }
 
@@ -129,36 +129,39 @@ input:focus {
 }
 
 /* Navbar */
+  header {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+     
+   
+    }
+    .logo {
+      width: 26%;
+    }
 
-header {
+    nav {
+      position: relative;
+    }
 
-  width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 50px;
-}
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
 
-.logo {
-  width: 26%;
-}
-
-header nav ul {
-  display: flex;
-}
-
-header nav ul li a {
-  display: inline-block;
-  color: #ffffff;
-  padding: 5px 0;
-  margin: 0 10px;
-  border: 3px solid transparent;
-  text-transform: uppercase;
-
-}
-
-header nav ul li a:hover,
-header nav ul li a.active {
-  border-bottom-color: rgb(255, 255, 255);
-}
+    nav ul li a {
+      color: #ffffff;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+      
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      border-bottom-color: #ffffff;
+    }

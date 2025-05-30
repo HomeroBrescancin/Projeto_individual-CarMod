@@ -22,8 +22,16 @@ CREATE TABLE cadastroCarro (
 );
 
 
+CREATE TABLE quiz (
+    idquiz INT PRIMARY KEY AUTO_INCREMENT,
+    fkusuario INT,
+    pontuacao INT,
+    nivel VARCHAR(20),
+    FOREIGN KEY (fkusuario) REFERENCES usuario(id)
+);
 
-select * from cadastroCarro;
+
+select * from quiz;
 
 
 
