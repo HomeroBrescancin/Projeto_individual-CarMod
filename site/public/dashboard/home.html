@@ -2,159 +2,226 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/dash.css" />
     <script src="../js/sessao.js"></script>
-    <link rel="stylesheet" href="../css/dash.css">
-
-    <title>Document</title>
 </head>
 
-<body onload="validarSessao()">
-
-
-
+<body onload="carregarDashboards();">
 
     <header>
-        <a href="index.html"><img class="logo" src="../assets/logo.png" alt=""></a>
+        <a href="index.html"><img class="logo" src="../assets/logo.png" alt="Logo" /></a>
 
         <nav>
             <ul class="menu">
-                <li>
-                    <a class="active" href="#">Dashboard</a>
-                </li>
-                <br><br>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-
-
-                <br><br>
-                <li>
-                    <a href="quiz.html">Quiz</a>
-                </li>
-                <br><br>
-                <li>
-                    <a href="#">Perfil</a>
-                </li>
-
-                <!-- <li>
-                    <a><span id="b_usuario">usuário</span></a>
-                </li><br><br> -->
+                <li><a class="active" href="#">Dashboard</a></li><br><br>
+                <li><a href="cadastro.html">Cadastro</a></li><br><br>
+                <li><a href="quiz.html">Quiz</a></li><br><br>
 
                 <li>
-                    <div onclick="limparSessao()">
-                        <a href="#">Sair</a>
-                    </div>
+                    <div onclick="limparSessao()"><a href="#">Sair</a></div>
                 </li><br><br>
-
             </ul>
         </nav>
-
     </header>
 
-    <br><br> <br><br>
+    <br><br><br>
 
     <div class="sec_1">
 
+        
         <div class="dashs">
             <div class="dash_n">
-                <canvas id="barDash"></canvas>
+                <div class="grafico-container">
+                    <p class="descricao">Marcas cadastradas</p>
+                    <canvas id="barDash"></canvas>
+                </div>
             </div>
             <div class="dash_n">
-                <canvas id="lineDash"></canvas>
+                <div class="grafico-container">
+                    <p class="descricao">Distribuição de carros por ano</p>
+                    <canvas id="lineDash"></canvas>
+                </div>
             </div>
             <div class="dash_n">
-                <canvas id="pieDash"></canvas>
+                <div class="grafico-container">
+                    <p class="descricao">Tipos de combustível</p>
+                    <canvas id="pieDash"></canvas>
+                </div>
             </div>
             <div class="dash_n">
-                <canvas id="barChartDash"></canvas>
+                <div class="grafico-container">
+                    <p class="descricao">Níveis dos usuários no quiz</p>
+                    <canvas id="barChartDash"></canvas>
+                </div>
             </div>
         </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        async function carregarDashboards() {
+            try {
+                // Iniciando carregamento dos dados dos gráficos
+                console.log('Carregando dados para dashboard...');
+
+                // MARCAS 
+                const resMarcas = await fetch('/dash/api/marcas'); // Buscando dados das marcas na API
+                console.log('Resposta /dash/api/marcas:', resMarcas);
+                if (!resMarcas.ok) throw new Error('Erro na API marcas');
+                const marcas = await resMarcas.json(); // Convertendo resposta em JSON
+                console.log('Marcas:', marcas);
+
+                // Criando o gráfico de barras com as marcas
+                const ctxBar = document.getElementById('barDash').getContext('2d');
+                new Chart(ctxBar, {
+                    type: 'bar',
+                    data: {
+                        labels: marcas.map(m => m.Marca), // Pegando nome das marcas
+                        datasets: [{
+                            label: 'Marcas Cadastradas',
+                            data: marcas.map(m => m.quantidade), // Quantidade por marca
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)' // Cor das barras
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    precision: 0, // Sem casas decimais
+                                    stepSize: 1, // Intervalo de 1 em 1
+                                    callback: function (value) {
+                                        if (Number.isInteger(value)) return value; // Só mostra inteiros
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                //  ANO 
+                const resAnos = await fetch('/dash/api/anos'); // Buscando dados dos anos
+                console.log('Resposta /dash/api/anos:', resAnos);
+                if (!resAnos.ok) throw new Error('Erro na API anos');
+                const anos = await resAnos.json();
+                console.log('Anos:', anos);
+
+                const ctxLine = document.getElementById('lineDash').getContext('2d');
+                new Chart(ctxLine, {
+                    type: 'line',
+                    data: {
+                        labels: anos.map(a => a.ano), // Pegando os anos
+                        datasets: [{
+                            label: 'Valores por Ano',
+                            data: anos.map(a => a.quantidade), // Quantidades por ano
+                            borderColor: 'rgba(255, 99, 132, 0.8)',
+                            fill: false,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    precision: 0, // Sem números quebrados
+                                    stepSize: 1,
+                                    callback: function (value) {
+                                        if (Number.isInteger(value)) return value; // Só inteiros
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // COMBUSTÍVEL
+                const resComb = await fetch('/dash/api/combustiveis'); // Buscando os combustíveis
+                console.log('Resposta /dash/api/combustiveis:', resComb);
+                if (!resComb.ok) throw new Error('Erro na API combustiveis');
+                const combustiveis = await resComb.json();
+                console.log('Combustíveis:', combustiveis);
+
+                const ctxPie = document.getElementById('pieDash').getContext('2d');
+                new Chart(ctxPie, {
+                    type: 'pie',
+                    data: {
+                        labels: combustiveis.map(c => c.combustivel), // Tipos de combustível
+                        datasets: [{
+                            label: 'Tipos de Combustível',
+                            data: combustiveis.map(c => c.quantidade), // Quantidade de cada tipo
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(0, 195, 255)',
+                                'rgba(153, 102, 255, 0.7)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+
+                // QUIZ 
+                const resNiveis = await fetch('/dash/api/quiz_niveis'); // Buscando os níveis do quiz
+                console.log('Resposta /dash/api/quiz_niveis:', resNiveis);
+                if (!resNiveis.ok) throw new Error('Erro na API quiz_niveis');
+                const niveis = await resNiveis.json();
+                console.log('Níveis quiz:', niveis);
+
+                const ctxBarChart = document.getElementById('barChartDash').getContext('2d');
+                new Chart(ctxBarChart, {
+                    type: 'bar',
+                    data: {
+                        labels: niveis.map(n => n.nivel), // Níveis: Noob, Mediano, Profissional
+                        datasets: [{
+                            label: 'Níveis do Quiz',
+                            data: niveis.map(n => n.quantidade), // Quantidade por nível
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)' // Cor das barras
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    precision: 0,
+                                    stepSize: 1,
+                                    callback: function (value) {
+                                        if (Number.isInteger(value)) return value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+            } catch (error) {
+                // Tratando erro geral de carregamento
+                console.error('Erro ao carregar dados dos dashboards:', error);
+            }
+
+            // Total de carros cadastrados
+            const resposta = await fetch('/dash/api/total_carros');
+            const dados = await resposta.json();
+            document.getElementById('qtdCarros').textContent = dados.total;
+        }
+    </script>
+
 </body>
 
 </html>
-<!-- CDN Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  // Gráfico de barra simples (dash_1)
-  const ctxBar = document.getElementById('barDash').getContext('2d');
-  const barChart = new Chart(ctxBar, {
-    type: 'bar',
-    data: {
-      labels: ['A', 'B', 'C', 'D', 'E'],
-      datasets: [{
-        label: 'Barra',
-        data: [12, 19, 3, 5, 2],
-        backgroundColor: 'rgba(54, 162, 235, 0.6)'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  });
-
-  // Gráfico de linha (dash_2)
-  const ctxLine = document.getElementById('lineDash').getContext('2d');
-  const lineChart = new Chart(ctxLine, {
-    type: 'line',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-      datasets: [{
-        label: 'Linha',
-        data: [10, 15, 13, 17, 14],
-        borderColor: 'rgba(255, 99, 132, 0.8)',
-        fill: false,
-        tension: 0.1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  });
-
-  // Gráfico de pizza (dash_3)
-  const ctxPie = document.getElementById('pieDash').getContext('2d');
-  const pieChart = new Chart(ctxPie, {
-    type: 'pie',
-    data: {
-      labels: ['Vermelho', 'Azul', 'Amarelo'],
-      datasets: [{
-        label: 'Pizza',
-        data: [10, 20, 30],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.7)',
-          'rgba(54, 162, 235, 0.7)',
-          'rgba(255, 206, 86, 0.7)'
-        ]
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  });
-
-  // Gráfico de barra (dash_4) - pode repetir barra, mas muda dados
-  const ctxBarChart = document.getElementById('barChartDash').getContext('2d');
-  const barChart2 = new Chart(ctxBarChart, {
-    type: 'bar',
-    data: {
-      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-      datasets: [{
-        label: 'Barra 2',
-        data: [8, 12, 6, 9],
-        backgroundColor: 'rgba(75, 192, 192, 0.6)'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  });
-</script>

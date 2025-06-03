@@ -1,6 +1,8 @@
 // Defina o ambiente (desenvolvimento ou produção)
-var ambiente_processo = 'desenvolvimento'; // ou 'producao'
+// Melhor usar variável de ambiente para flexibilizar
+var ambiente_processo = process.env.AMBIENTE_PROCESSO || 'desenvolvimento';
 
+// Define qual arquivo .env carregar com base no ambiente
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
 
 // Carregando variáveis de ambiente
@@ -14,7 +16,10 @@ var path = require("path");
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var carroRouter = require("./src/routes/carros");
+var quizRouter = require("./src/routes/quiz");  
+var dashRouter = require("./src/routes/dash"); 
 
+// Porta e host via .env ou padrão
 var PORTA_APP = process.env.APP_PORT || 3000;
 var HOST_APP = process.env.APP_HOST || 'localhost';
 
@@ -34,6 +39,8 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/carros", carroRouter);
+app.use("/quiz", quizRouter);  
+app.use("/dash", dashRouter);
 
 // Inicia o servidor
 app.listen(PORTA_APP, function () {
@@ -45,15 +52,15 @@ app.listen(PORTA_APP, function () {
 ##       ######  #####   ## ### ##  ##    ##  ##  ##  
 ##       ##  ##  ####    ##     ##  ##    ##  ##  ##
  ##  ##  ##  ##  ## ##   ##     ##  ##    ##  ## ##
-  ####   ##  ##  ##  ##  ##     ##   ######   ###                                           
-                                                                                      
+  ####   ##  ##  ##  ##  ##     ##   ######   ###
+                                           
 Servidor rodando em: http://${HOST_APP}:${PORTA_APP}
 
-Ambiente: ${process.env.AMBIENTE_PROCESSO || ambiente_processo}
+Ambiente: ${ambiente_processo}
 
 Se ambiente for 'desenvolvimento', conecta no banco local.
 Se ambiente for 'producao', conecta no banco remoto.
 
-Para alterar o ambiente, mude a variável 'ambiente_processo' no início do app.js
+Para alterar o ambiente, defina a variável de ambiente AMBIENTE_PROCESSO no arquivo .env
 `);
 });

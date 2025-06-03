@@ -71,7 +71,7 @@ body {
 
   /* Section 1 */
   .fundo-compartilhado {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/turbo.png);
+    background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.6)), url(../assets/turbo.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -143,6 +143,7 @@ footer {
     .contact a:hover {
       text-decoration: underline;
     }
+
 
 
   

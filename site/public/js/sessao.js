@@ -15,10 +15,13 @@ function validarSessao() {
     }
 }
 
+
 function limparSessao() {
     sessionStorage.clear();
     window.location = "../login.html";
 }
+
+
 
 // carregamento (loading)
 function aguardar() {

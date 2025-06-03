@@ -7,28 +7,29 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="../css/cadastro_carro.css" />
     <link rel="icon" href="imagens/icon.png" />
+       <script src="../js/sessao.js"></script>
 </head>
 <body>
     <header>
         <a href="index.html"><img class="logo" src="../assets/logo.png" alt="Logo" /></a>
         <nav>
             <ul class="menu">
-                <li><a href="home.html">Dashboard</a></li><br /><br />
-                <li><a class="active" href="#">Cadastro</a></li><br /><br />
-                <li><a href="quiz.html">Quiz</a></li><br /><br />
-                <li><a href="#">Perfil</a></li>
+                <li><a href="home.html">Dashboard</a></li><br><br>
+                <li><a class="active" href="#">Cadastro</a></li><br><br>
+                <li><a href="quiz.html">Quiz</a></li><br><br>
+               
                 <li>
                     <div onclick="limparSessao()">
                         <a href="#">Sair</a>
                     </div>
-                </li><br /><br />
+                </li><br><br>
             </ul>
         </nav>
     </header>
 
     <div class="center">
         <div class="container">
-            <h1 class="title">Cadastre seu carro</h1> <br />
+            <h1 class="title">Cadastre seu carro</h1> <br>
 
             <select id="marca_select">
                 <option value="#">Marca...</option>
@@ -43,12 +44,12 @@
                 <option value="Renault">Renault</option>
                 <option value="Toyota">Toyota</option>
                 <option value="Volkswagen">Volkswagen</option>
-            </select><br />
+            </select><br>
 
-            <input type="text" id="modelo_input" placeholder="Modelo do carro" /><br />
+            <input type="text" id="modelo_input" placeholder="Modelo do carro" /><br>
 
             <!-- Mudança aqui: input do tipo number para aceitar apenas o ano -->
-            <input type="number" id="data_fab_input" placeholder="Ano de fabricação" min="1901" max="2155" /><br />
+            <input type="number" id="data_fab_input" placeholder="Ano de fabricação" min="1901" max="2155" /><br>
 
             <select id="combustivel_select">
                 <option value="#">Combustível...</option>
@@ -58,7 +59,7 @@
                 <option value="Flex">Flex</option>
                 <option value="GNV">GNV</option>
                 <option value="Elétrico">Elétrico</option>
-            </select><br />
+            </select><br>
 
 
             <button class="button" onclick="cadastrarCarro()">Cadastrar</button>

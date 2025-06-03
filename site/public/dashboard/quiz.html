@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo - Quiz</title>
     <link rel="stylesheet" href="../css/quiz.css">
+       <script src="../js/sessao.js"></script>
 </head>
 
 
@@ -33,9 +34,7 @@
                     <a class="active" href="#">Quiz</a>
                 </li>
                 <br><br>
-                <li>
-                    <a href="#">Perfil</a>
-                </li>
+             
                  <li>
                     <div onclick="limparSessao()">
                         <a href="#">Sair</a>
@@ -384,15 +383,15 @@ function finalizarJogo() {
 
     // Classificação por nível
     let nivelUsuario = ""
-    if (acertos <= 3) {
+    if (acertos <= 5) {
         nivelUsuario = "Noob"
         classComCoresParaMensagemFinal = "text-danger-with-bg"
         textoParaMensagemFinal = "Você é um Noob em carros."
-    } else if (acertos >= 4 && acertos <= 6) {
+    } else if (acertos >= 6 && acertos <= 7) {
         nivelUsuario = "Mediano"
         classComCoresParaMensagemFinal = "text-warning-with-bg"
         textoParaMensagemFinal = "Você tem um nível Mediano em carros."
-    } else if (acertos >= 7) {
+    } else if (acertos >= 8) {
         nivelUsuario = "Profissional"
         classComCoresParaMensagemFinal = "text-success-with-bg"
         textoParaMensagemFinal = "Parabéns! Você é um Profissional em carros."
