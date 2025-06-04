@@ -36,11 +36,6 @@ INSERT INTO usuario (Nome, email, senha, Estado) VALUES
 ('Carla Mendes', 'carla@exemplo.com', 'senha123', 'MG'),
 ('Diego Rocha', 'diego@exemplo.com', 'senha123', 'BA'),
 ('Eduarda Martins', 'eduarda@exemplo.com', 'senha123', 'PR'),
-('Felipe Castro', 'felipe@exemplo.com', 'senha123', 'SC'),
-('Gustavo Tavares', 'gustavo@exemplo.com', 'senha123', 'RS'),
-('Helena Ribeiro', 'helena@exemplo.com', 'senha123', 'PE'),
-('Igor Almeida', 'igor@exemplo.com', 'senha123', 'GO'),
-('Juliana Azevedo', 'juliana@exemplo.com', 'senha123', 'AM'),
 ('Kaique Nunes', 'kaique@exemplo.com', 'senha123', 'CE');
 
 INSERT INTO cadastroCarro (fkusuario, Marca, Modelo, dtFabri, tipoCombustivel) VALUES
@@ -48,13 +43,7 @@ INSERT INTO cadastroCarro (fkusuario, Marca, Modelo, dtFabri, tipoCombustivel) V
 (2, 'Fiat', 'Argo', 2020, 'Álcool'),
 (3, 'Ford', 'Ka', 2018, 'Diesel'),
 (4, 'Honda', 'Civic', 2021, 'Flex'),
-(5, 'Hyundai', 'HB20', 2022, 'GNV'),
-(6, 'Jeep', 'Renegade', 2023, 'Elétrico'),
-(7, 'Nissan', 'Versa', 2017, 'Gasolina'),
-(8, 'Peugeot', '208', 2020, 'Álcool'),
-(9, 'Renault', 'Sandero', 2016, 'Diesel'),
-(10, 'Toyota', 'Corolla', 2021, 'Flex'),
-(11, 'Volkswagen', 'Gol', 2019, 'GNV');
+(1, 'Volkswagen', 'Gol', 2019, 'GNV');
 
 
 INSERT INTO quiz (fkusuario, pontuacao, nivel) VALUES
@@ -63,12 +52,8 @@ INSERT INTO quiz (fkusuario, pontuacao, nivel) VALUES
 (3, 2, 'Noob'),
 (4, 10, 'Profissional'),
 (5, 6, 'Mediano'),
-(6, 1, 'Noob'),
-(7, 8, 'Profissional'),
-(8, 5, 'Mediano'),
-(9, 3, 'Noob'),
-(10, 7, 'Mediano'),
-(11, 10, 'Profissional');
+(1, 10, 'Profissional');
+
 
 
 

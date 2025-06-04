@@ -55,15 +55,6 @@ body {
       border-bottom-color: #ffffff;
     }
 
-      .sec_1 {
-
-    height: 90vh;
-    
-  display: flex;
-  justify-content: center;
-  align-items: center;
-    
-  }
 
   .info
   {
@@ -116,4 +107,25 @@ body {
   color: white;
   margin-bottom: 5px;
   text-align: center;
+}
+
+.sec_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.sec_1 h3 {
+  color: white;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.descricao2 {
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  max-width: 800px;
+
 }

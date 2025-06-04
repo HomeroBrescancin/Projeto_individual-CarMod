@@ -96,10 +96,6 @@
             
         }
 
-        // Exibindo no console
-        console.log("Email: ", emailVar);
-        console.log("Senha: ", senhaVar);
-
         // Enviando os dados para o servidor
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -117,7 +113,7 @@
         sessionStorage.NOME_USUARIO = json.nome;
         sessionStorage.ID_USUARIO = json.id;
 
-mensagem_erro.innerHTML = "<span style='color: white; font-size: 16px; text-align: center; display: block;'>Login realizado com sucesso! Redirecionando...</span>";
+    mensagem_erro.innerHTML = "<span style='color: white; font-size: 16px; text-align: center; display: block;'>Login realizado com sucesso! Redirecionando...</span>";
 
         setTimeout(function () {
             window.location = "./dashboard/home.html";
